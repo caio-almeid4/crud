@@ -6,11 +6,15 @@ load_dotenv()
 db_password = os.getenv("DB_PASSWORD")
 
 
-conn = psycopg2.connect(
+def connect_db():
     
-    host = "localhost",
-    port = 5432,
-    database = "mydb",
-    user = "postgres",
-    password = db_password
-)
+    conn = psycopg2.connect(
+        
+        host = "localhost",
+        port = 5432,
+        database = "mydb",
+        user = "postgres",
+        password = db_password
+    )
+
+    return conn
