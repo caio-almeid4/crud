@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 from crud import User
-from crud import create, delete, get
+from crud import create, delete, get, update
+
 
 app = FastAPI()
 
@@ -28,6 +28,15 @@ def get_user(email: str):
     
     return get(email)
 
+
+@app.put("/update_user")
+def update_user(email: str, data: dict = {"name": "", "age": 0, "email": ""}):
+    
+    update(email, data)
+    
+    return {"message": "user updated successfully"} | get_user(data["email"])
+    
+    
 
     
 
