@@ -1,4 +1,8 @@
+from fastapi import FastAPI
 from db import connect_db
+
+
+app = FastAPI()
 
 class User:
     
@@ -13,8 +17,7 @@ class User:
         self.name = name
         self.age = age
         self.email = email
-        
-        
+           
     def create(self):
         
         conn = connect_db()
@@ -28,5 +31,19 @@ class User:
         conn.commit()
         cur.close()
         conn.close()
-
+        
+    def delete(self):
+        
+        conn = connect_db()
+        cur = conn.cursor()
+        
+        cur.execute(
+            "DELETE FROM users WHERE email = (%s)",
+            (self.email,)
+        )
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+    
         
