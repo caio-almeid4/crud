@@ -1,13 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+
+from crud import UserCreate
 from crud import create, delete, get
 
 app = FastAPI()
 
-class UserCreate(BaseModel):
-    name: str
-    age: int
-    email: str
     
 @app.post("/add_user")
 def create_user(user: UserCreate):
@@ -29,6 +27,8 @@ def delete_user(email: str):
 def get_user(email: str):
     
     return get(email)
+
+
     
 
         

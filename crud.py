@@ -1,5 +1,11 @@
 from db import connect_db
+from pydantic import BaseModel
 
+
+class UserCreate(BaseModel):
+    name: str
+    age: int
+    email: str
            
 def create(name: str, age: int, email: str):
         
@@ -48,4 +54,3 @@ def  get(email: str):
     
     return info
 
-    
