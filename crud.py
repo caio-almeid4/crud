@@ -2,12 +2,12 @@ from db import connect_db
 from pydantic import BaseModel
 
 
-class UserCreate(BaseModel):
+class User(BaseModel):
     name: str
     age: int
     email: str
            
-def create(user: UserCreate):
+def create(user: User):
         
     conn = connect_db()
     cur = conn.cursor()
