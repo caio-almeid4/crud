@@ -10,7 +10,7 @@ app = FastAPI()
 @app.post("/add_user")
 def create_user(user: UserCreate):
     
-    create(user.name, user.age, user.email)
+    create(user)
    
     
     return {"message": "user created successfully"}

@@ -7,14 +7,14 @@ class UserCreate(BaseModel):
     age: int
     email: str
            
-def create(name: str, age: int, email: str):
+def create(user: UserCreate):
         
     conn = connect_db()
     cur = conn.cursor()
     
     cur.execute(
         "INSERT INTO users (name, age, email) VALUES (%s, %s, %s)",
-        (name, age, email)
+        (user.name, user.age, user.email)
     )
     
     conn.commit()
@@ -54,3 +54,16 @@ def  get(email: str):
     
     return info
 
+def update(email: str):
+    
+    conn = connect_db()
+    cur = conn.cursor()
+    
+    cur.execute(
+        "UPDATE name, age, email FROM users WHERE email = (%s)",
+        (email,)
+    )
+    
+    conn.commit()
+    cur.close()
+    conn.close()
