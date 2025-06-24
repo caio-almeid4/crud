@@ -34,7 +34,7 @@ def update_user(email: str, data: dict = {"name": "", "age": 0, "email": ""}):
     
     update(email, data)
     
-    return {"message": "user updated successfully"} | get_user(data["email"])
+    return {"message": "user updated successfully", "user": get_user(data["email"])}
     
     
 

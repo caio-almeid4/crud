@@ -55,12 +55,11 @@ def  get(email: str):
     return info
 
 
-#data: dict = {"name": "DEFAULT", "age": "DEFAULT", "email": "DEFAULT"}
-#data["name"], data["age"], data["email"]
 def update(email: str, data: dict):
     
     conn = connect_db()
     cur = conn.cursor()
+    
     
     cur.execute(
         "UPDATE users SET name = %s , age = %s, email = %s WHERE email = %s",
